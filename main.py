@@ -1,8 +1,21 @@
+
 # Import required libraries
 import streamlit as st
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import time  # For animation effects
+
+# Apply custom CSS for a black background
+st.markdown("""
+    <style>
+        body {
+            background-color: black !important;
+        }
+        .stApp {
+            background-color: black;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # List of available time zones
 TIME_ZONES = [
@@ -18,7 +31,7 @@ TIME_ZONES = [
     "🇮🇳 Asia/Kolkata",
 ]
 
-#  animated title with blue neon lighting effect
+# Animated title with blue neon lighting effect
 st.markdown("""
     <h1 style='text-align: center; 
                color: #00ccff;
@@ -27,7 +40,7 @@ st.markdown("""
     </h1>
 """, unsafe_allow_html=True)
 
-#  multi-select dropdown for choosing time zones
+# Multi-select dropdown for choosing time zones
 selected_timezone = st.multiselect(
     "🕰️ Select Timezones", TIME_ZONES, default=["🌍 UTC", "🇵🇰 Asia/Karachi"]
 )
@@ -46,7 +59,7 @@ for tz in selected_timezone:
     # Display timezone and its current time
     st.write(f"**{tz}**: ⏲️ {current_time}")
 
-# section for time conversion with animation
+# Section for time conversion with animation
 st.markdown("""
     <h2 style='color: #00ccff;
                text-shadow: 0px 0px 15px #00ccff, 0px 0px 30px #0099ff, 0px 0px 45px #0066ff;'>
@@ -55,14 +68,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.markdown("⚡ *Easily convert time from one timezone to another at the speed of light!*")
 
-#  time input field with current time as default
+# Time input field with current time as default
 current_time = st.time_input("⏰ Current Time", value=datetime.now().time())
 # Dropdown to select source timezone
 from_tz = st.selectbox("🌐 From Timezone", TIME_ZONES, index=0)
 # Dropdown to select target timezone
 to_tz = st.selectbox("🌍 To Timezone", TIME_ZONES, index=1)
 
-#  convert button with animation effect
+# Convert button with animation effect
 if st.button("⚡ Convert Time"):
     # Show a glowing loading effect
     with st.spinner("⚡ Converting time... Hold tight!"):
@@ -86,7 +99,7 @@ if st.button("⚡ Convert Time"):
         </div>
     """, unsafe_allow_html=True)
 
-#  footer with blue neon glowing effect
+# Footer with blue neon glowing effect
 st.markdown("---")
 st.markdown("""
     <h4 style='text-align: center; 
